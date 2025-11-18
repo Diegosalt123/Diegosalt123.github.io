@@ -1,0 +1,38 @@
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+.cat-img {
+    max-width: 700px;
+    margin-right: 20px;
+    margin-top: 90px;
+}
+
+.text {
+    max-width: 400px;
+}
+
+.text h1 {
+    margin-top: 0;
+    font-size: 2.6em;
+    letter-spacing: 1px;
+  '
+}
+
+.text p {
+    font-size: 0.75em; /* Mindre text */
+    line-height: 2;
+    letter-spacing: 0.5px;
+}

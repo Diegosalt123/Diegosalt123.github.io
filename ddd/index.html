@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Navigationsexempel — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* 
+      NAVIGATION - VAL & DOKUMENTATION
+      - Layout: Flexbox för horisontell nav på desktop och vertikal på mobil
+      - Färger: Minimalistisk (mörk text, accentfärg för hover/active)
+      - Interaktivitet: Små övergångar (transition), hover-förhöjning (translate + bg)
+      - Responsivitet: Mobil breakpoint @max-width: 700px med checkbox-hamburgermeny
+      - Accessibility: Fokus-styling och aria-etiketter
+    */
+
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #0ea5a4; /* turquoise accent */
+      --nav-bg: rgba(15,23,42,0.02);
+      --radius: 8px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.4;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    header.site-header{
+      padding:1rem 1.25rem;
+      background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+      border-bottom: 1px solid rgba(15,23,42,0.04);
+    }
+
+    .container{
+      max-width:1000px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+
+    .brand{
+      font-weight:600;
+      letter-spacing:0.2px;
+    }
+
+    /* --- NAV STYLING (Flexbox, desktop) --- */
+    nav.main-nav{
+      position:relative;
+    }
+
+    /* Hidden checkbox toggles mobile menu */
+    .nav-toggle{
+      display:none; /* Visas först på mobil via media query */
+    }
+
+    .menu-btn{
+      display:none; /* endast mobil */
+      background:none;
+      border:0;
+      cursor:pointer;
+      font-size:1.25rem;
+      padding:0.25rem 0.5rem;
+      color:var(--text);
+    }
+
+    ul.nav-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:0.5rem;
+      align-items:center;
+    }
+
+    ul.nav-list li a{
+      display:inline-block;
+      padding:0.5rem 0.9rem;
+      text-decoration:none;
+      color:var(--text);
+      border-radius:var(--radius);
+      transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+      font-weight:500;
+    }
+
+    /* Hover-effekt: lätt lyft + accentfärg-utseende */
+    ul.nav-list li a:hover,
+    ul.nav-list li a:focus{
+      transform: translateY(-3px);
+      background: linear-gradient(180deg, rgba(14,165,164,0.08), rgba(14,165,164,0.04));
+      box-shadow: 0 6px 14px rgba(14,165,164,0.06);
+      outline: none;
+    }
+
+    ul.nav-list li a.active{
+      color:var(--accent);
+      box-shadow: inset 0 -2px 0 var(--accent);
+    }
+
+    /* Lärarresurser (länklista) */
+    aside.resources{
+      margin-top:0.75rem;
+    }
+    aside.resources a{
+      display:inline-block;
+      color:var(--muted);
+      text-decoration:none;
+      margin-right:0.8rem;
+    }
+    aside.resources a:hover{color:var(--accent)}
+
+    /* --- RESPONSIV: mobil layout och hamburgermeny --- */
+    @media (max-width:700px){
+      .container{align-items:center}
+      .menu-btn{display:inline-flex; align-items:center}
+      ul.nav-list{
+        position:absolute;
+        right:0;
+        top:100%;
+        background:var(--nav-bg);
+        border-radius:8px;
+        padding:0.75rem;
+        flex-direction:column;
+        align-items:flex-end;
+        gap:0.5rem;
+        box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+        display:none; /* göms när checkbox inte är markerad */
+        min-width:200px;
+      }
+
+      /* När checkboxen är ikryssad visas menyn */
+      .nav-toggle:checked + .menu-btn + .nav-list{
+        display:flex;
+      }
+    }
+
+    /* Enkel huvudlayout för demo */
+    main{padding:2rem 1.25rem}
+    .hero{max-width:800px; margin:0 auto; color:var(--muted)}
+    /* Slut på CSS-dokumentation */
+  </style>
+</head>
+<body>
+  <!--
+  📝 PLANERING I KOD:
+  Före <nav>-elementet: Skriv en längre kommentar där du planerar ditt navigationarbete
+
+  <!-- NAVIGATIONSPLANERING VECKA 1
+  Syfte: Skapa horisontell navigation för min personliga webbsida
+  Menyval: Hem, Om mig, Projekt, Kontakt (passar min portfolio-vision)
+  Teknisk approach: Flexbox för layout, hover-effekter för interaktivitet
+  Designmål: Minimalistisk men tydlig, matchar min personliga stil
+  Responsivitet: Ska fungera på mobil, kanske hamburgermeny senare
+  -->
+  -->
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="brand">Min Portfolio</div>
+
+      <nav class="main-nav" role="navigation" aria-label="Huvudnavigation">
+        <!-- Checkbox för att toggla mobilmenyn; label agerar knapp (hamburger ikon) -->
+        <input class="nav-toggle" id="nav-toggle" type="checkbox" aria-hidden="true" />
+        <label class="menu-btn" for="nav-toggle" aria-label="Öppna meny">☰</label>
+
+        <ul class="nav-list" role="menubar">
+          <li role="none"><a href="#" role="menuitem" class="active">Hem</a></li>
+          <li role="none"><a href="#om" role="menuitem">Om mig</a></li>
+          <li role="none"><a href="#projekt" role="menuitem">Projekt</a></li>
+          <li role="none"><a href="#kontakt" role="menuitem">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <aside class="resources" aria-label="Lärarresurser">
+        <strong>🔗 Lärarresurser</strong>
+        <div>
+          <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank">→ Komplett navigationsexempel med CSS</a>
+          <a href="https://css-tricks.com/" target="_blank">→ CSS-kod och teknikförklaringar</a>
+          <a href="https://uxdesign.cc/responsive-design" target="_blank">→ Responsiv design inspiration</a>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Exempel: Navigation</h1>
+      <p>Testa responsivitet genom att ändra fönsterstorlek, och hover-effekter genom att röra musen över menylänkarna. Kommentera gärna dina designval i CSS-kommentarerna ovan. 🔍</p>
+    </section>
+  </main>
+
+  <script>
+    // Små förbättringar: stäng mobilmenyn när en länk klickas
+    document.querySelectorAll('.nav-list a').forEach(a => {
+      a.addEventListener('click', () => {
+        const checkbox = document.getElementById('nav-toggle');
+        if (checkbox && checkbox.checked) checkbox.checked = false;
+      });
+    });
+  </script>
+</body>
+</html>

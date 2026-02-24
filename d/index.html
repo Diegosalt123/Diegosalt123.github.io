@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigationsexempel — Min personliga sida</title>
+  <style>
+    /*
+      NAVIGATIONSDOKUMENTATION (CSS-kommentarer)
+      
+      Syfte: Minimalistisk horisontell navigation för en personlig portfolio/webbsida.
+      Menyalternativ: Hem, Om mig, Projekt, Blogg, Kontakt — speglar typiska sektioner.
+      Teknisk approach: Flexbox för layout; pseudo-element för underline-hover; CSS-variabler för snabb styling.
+      Designmål: Tydlig läsbarhet, tillräcklig kontrast, diskreta animationer.
+      Responsivitet: Desktop visar horisontell lista; mobil visar en hamburgermeny som expanderar vertikalt.
+
+      Accessibility: aria-attributes på toggelknappen; semantisk <nav>; skärmläsarvänlig text för knapp.
+      Kommentarer: Håll färger i variabler för att enkelt kunna växla mellan teman (.dark-theme på body).
+    */
+
+    :root{
+      --bg: #f7f7f9;
+      --nav-bg: #ffffff;
+      --accent: #0b5fff;
+      --muted: #6b7280;
+      --radius: 10px;
+      --shadow: 0 6px 18px rgba(16,24,40,0.06);
+      --max-width: 1100px;
+      --gap: 1rem;
+      --nav-height: 64px;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      padding:2rem 1rem;
+    }
+
+    /* NAVIGATION */
+    .site-nav{
+      background:linear-gradient(0deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      max-width:var(--max-width);
+      margin:0 auto 1.5rem auto;
+      padding:0.5rem;
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:var(--gap);
+      height:var(--nav-height);
+      padding:0 1rem;
+    }
+
+    .brand a{
+      text-decoration:none;
+      font-weight:700;
+      color:var(--accent);
+      font-size:1.05rem;
+      letter-spacing:0.2px;
+    }
+
+    .nav-list{
+      list-style:none;
+      display:flex;
+      gap:1.25rem;
+      align-items:center;
+      margin:0;
+      padding:0;
+    }
+
+    .nav-list a{
+      display:inline-block;
+      padding:0.45rem 0.25rem;
+      color:var(--muted);
+      text-decoration:none;
+      position:relative;
+      transition:color 180ms ease;
+      font-weight:600;
+    }
+
+    .nav-list a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      height:3px;
+      width:100%;
+      background:var(--accent);
+      transform-origin:left center;
+      transform:scaleX(0);
+      transition:transform 220ms cubic-bezier(.2,.9,.2,1);
+      border-radius:2px;
+      opacity:0.95;
+    }
+
+    .nav-list a:hover{ color:var(--accent); }
+    .nav-list a:hover::after{ transform:scaleX(1); }
+
+    .nav-list a.active{ color:var(--accent); }
+
+    .menu-toggle{
+      display:none;
+      background:none;
+      border:0;
+      cursor:pointer;
+      padding:0.5rem;
+      border-radius:8px;
+    }
+
+    .hamburger{
+      display:inline-block;
+      width:22px;height:2px;
+      background:var(--muted);
+      position:relative;
+    }
+    .hamburger::before,.hamburger::after{
+      content:"";
+      position:absolute;
+      left:0;right:0;height:2px;background:var(--muted);
+      transition:transform 200ms ease, opacity 200ms ease;
+    }
+    .hamburger::before{ top:-6px; }
+    .hamburger::after{ top:6px; }
+
+    .menu-toggle.open .hamburger{ background:transparent; }
+    .menu-toggle.open .hamburger::before{ transform:translateY(6px) rotate(45deg); }
+    .menu-toggle.open .hamburger::after{ transform:translateY(-6px) rotate(-45deg); }
+
+    @media (max-width:700px){
+      .nav-inner{ align-items:flex-start; padding:0.65rem; }
+      .menu-toggle{ display:inline-flex; align-items:center; }
+      .nav-list{
+        display:block;
+        width:100%;
+        margin-top:0.5rem;
+        padding:0.5rem 0.5rem;
+        background:transparent;
+        border-radius:8px;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height 320ms ease, opacity 220ms ease;
+        opacity:0;
+      }
+      .nav-list li{ margin:0.5rem 0; }
+      .nav-list a{ display:block; padding:0.6rem 0.25rem; }
+      .site-nav.open .nav-list{ max-height:420px; opacity:1; }
+    }
+
+    .dark-theme{
+      --bg:#0b1220;
+      --nav-bg:#071029;
+      --accent:#7dd3fc;
+      color:#e6eef8;
+      background:var(--bg);
+    }
+
+    .visually-hidden{ position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0; }
+
+    main{ max-width:var(--max-width); margin:0 auto; padding:1rem; }
+    .resources{ font-size:0.95rem; color:var(--muted); margin-top:1rem; }
+    a.resource-link{ color:var(--accent); text-decoration:none; font-weight:600; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATIONSPLANERING VECKA 1
+  -->
+
+  <nav class="site-nav" aria-label="Huvudnavigering">
+    <div class="nav-inner">
+      <div class="brand"><a href="#">MittNamn</a></div>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu">
+        <span class="hamburger" aria-hidden="true"></span>
+        <span class="visually-hidden">Meny</span>
+      </button>
+
+      <ul id="main-menu" class="nav-list">
+        <li><a class="active" href="#">Hem</a></li>
+        <li><a href="#about">Om mig</a></li>
+        <li><a href="#projects">Projekt</a></li>
+        <li><a href="#blog">Blogg</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Exempel: Navigationsstruktur</h1>
+    <p>Detta är en demo av en navigation med dokumentation i CSS-kommentarer. Testa att ändra fönsterstorlek för att se mobilmenyn.</p>
+
+    <section class="resources">
+      <h2>🔗 Lärarresurser</h2>
+      <ul>
+        <li><a class="resource-link" href="#">Komplett navigationsexempel med CSS</a> — En steg-för-steg guide</li>
+        <li><a class="resource-link" href="#">CSS-kod och teknikförklaringar</a> — Pseudo-element, transitions, flexbox</li>
+        <li><a class="resource-link" href="#">Responsiv design inspiration</a> — Exempel och breakpoints</li>
+      </ul>
+    </section>
+
+    <section style="margin-top:1.25rem;">
+      <h3>Planering i kod</h3>
+      <p>Se kommentaren ovanför <code>&lt;nav&gt;</code> som beskriver syfte, menyval och teknisk approach.</p>
+    </section>
+  </main>
+
+  <script>
+    // Enkel script för att toggla mobilmenyn.
+    (function(){
+      const toggle = document.querySelector('.menu-toggle');
+      const siteNav = document.querySelector('.site-nav');
+      const menu = document.getElementById('main-menu');
+
+      if(!toggle) return;
+
+      toggle.addEventListener('click', function(){
+        const open = toggle.classList.toggle('open');
+        siteNav.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 700){
+          toggle.classList.remove('open');
+          siteNav.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

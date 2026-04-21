@@ -1,0 +1,130 @@
+:root {
+    --gold: #d4af37;
+    --dark-bg: #050505;
+    --card-bg: #111;
+    --text-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.8;
+}
+
+header {
+    padding: 40px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.logo span { color: var(--gold); }
+
+/* Textsektion */
+.bio-section {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.lead-text {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.content-wrapper article p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+/* Galleri-sektion */
+.gallery-section {
+    padding: 40px 5%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.gallery-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.image-grid {
+    display: grid;
+    /* auto-fit gör att bilderna hoppar ner på nästa rad när det blir trångt */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.img-container {
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 350px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+    filter: grayscale(30%);
+}
+
+.img-container:hover img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* --- RESPONSIVITET (För högre betyg) --- */
+@media (max-width: 600px) {
+    header { padding: 20px; }
+    .logo { font-size: 1.5rem; }
+    .bio-section h1 { font-size: 1.8rem; }
+    .image-grid { grid-template-columns: 1fr; } /* En bild i taget på små mobiler */
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+    font-size: 0.8rem;
+}

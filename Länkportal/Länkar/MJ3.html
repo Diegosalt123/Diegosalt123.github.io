@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <!-- Grundläggande metadata för sidan -->
+    <meta charset="UTF-8"> <!-- Stöd för svenska tecken -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gör sidan responsiv -->
+    <title>Michael Jackson - The King of Pop</title> <!-- Titel i webbläsarfliken -->
+    
+    <!-- Koppling till extern CSS-fil -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER / LOGOTYP -->
+<header>
+    <!-- Sidans logotyp/titel -->
+    <div class="logo">ROCK AND ROLL<span>HALL OF FAME</span></div>
+</header>
+
+<main>
+    <!-- TEXTSEKTION (INTRO/BESKRIVNING) -->
+    <section class="bio-section">
+        <h1>Personer inom</h1>
+        <p class="lead-text">ROCK AND ROLL HALL OF FAME</p>
+        
+        <div class="content-wrapper">
+            <article>
+                <!-- Beskrivande text om artister -->
+                <p>
+                    Rock and Roll Hall of Fame samlar några av musikens mest inflytelserika artister...
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- BILDGALLERI -->
+    <section class="gallery-section">
+        <h2>Bildgalleri</h2>
+
+        <!-- Grid-layout för bilder -->
+        <div class="image-grid">
+
+            <!-- Varje bild ligger i en container -->
+            <div class="img-container">
+                <!-- Bild + klickfunktion som öppnar modal -->
+                <img src="c:\Users\...\Evanescence.jpg" alt="Evanescence" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Foo Fighters.jpg" alt="Foo Fighters" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Jackson 5.jpg" alt="Michael Jackson" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Justin Bieber.png" alt="Justin Bieber" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Led Zeppelin.JPG" alt="Led Zeppelin" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Nickelback.jpg" alt="Nickelback" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\Queen.jpg" alt="Queen" onclick="openModal(this.src)">
+            </div>
+
+            <div class="img-container">
+                <img src="c:\Users\...\U2.jpg" alt="U2" onclick="openModal(this.src)">
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- MODAL (POPUP-BILD) -->
+<div id="myModal" class="modal" onclick="this.style.display='none'">
+    <!-- Bild som visas i stort format -->
+    <img class="modal-content" id="img01">
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2024 - Webbprojekt 3 - Michael Jackson Biografi</p>
+</footer>
+
+<!-- SLUTREFLEKTION - BILDHANTERINGSPROJEKT
+Ursprunglig plan: [Jag planerade att skapa en stilren webbsida om Michael Jackson med ett responsivt bildgalleri och dark mode-design.]
+Faktiskt resultat: [Jag lyckades göra en fungerande sida med CSS Grid, snygg layout och en modal som visar bilder i större format.]
+Största utmaning: [Att få bilderna att fungera rätt. Jag använde först fel sökvägar (lokala filer), men lärde mig använda relativa länkar.]
+Bildoptimering: [Jag använde object-fit: cover och anpassade bildstorlekar för bättre laddning och en enhetlig layout.]
+Teknisk utveckling: [Jag lärde mig mer om HTML-struktur, CSS Grid och hur JavaScript kan skapa interaktivitet.]
+Kvalitetsbedömning: [Jag är nöjd, men skulle förbättra bildoptimering och göra sidan ännu snabbare.]
+Nästa projekt: [Jag vill lära mig mer JavaScript och skapa mer avancerade animationer och funktioner.]
+-->
+
+    <script src="script.js"></script>
+</body>
+</html>

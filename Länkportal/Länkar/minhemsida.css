@@ -1,0 +1,144 @@
+/* ==========================================
+   GRUNDLÄGGANDE STYLING
+   ========================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* ==========================================
+   HERO-SEKTION (Översta delen)
+   ========================================== */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.scroll-indicator {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+}
+
+/* ==========================================
+   PROJEKT-GRID (2 kolumner)
+   ========================================== */
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Skapar exakt två kolumner */
+    gap: 30px;
+}
+
+.project-card {
+    background: white;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+/* ==========================================
+   GILLA-KNAPP
+   ========================================== */
+.like-section {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.like-btn {
+    background: #ff4b2b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ==========================================
+   INFO-BOX (Den svarta markerade boxen)
+   ========================================== */
+.info-box {
+    background-color: #000000; /* Helt svart bakgrund */
+    color: #ffffff;            /* Vit text */
+    padding: 40px;             /* Luft inuti boxen */
+    border-radius: 15px;       /* Rundade hörn */
+    max-width: 600px;          /* Begränsad bredd */
+    margin: 0 auto;            /* Centrerar boxen */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4); /* Skugga för att sticka ut */
+    border: 1px solid #444;    /* Tydlig kantlinje */
+}
+
+/* ==========================================
+   ANIMATIONER & FOOTER
+   ========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    background: #333;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+@media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 3rem; }
+}
